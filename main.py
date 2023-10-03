@@ -21,9 +21,6 @@ grafica=Pin(22, Pin.IN, Pin.PULL_DOWN)
 zoomh=Pin(32, Pin.IN, Pin.PULL_DOWN)
 zooml=Pin(19, Pin.IN, Pin.PULL_DOWN)
 
-disp_width = 240
-disp_height = 240
-
 spi2 = SPI(2, 60000000, polarity=1)
 display = ST7789(spi2, 240, 240, reset=pin_st7789_res, dc=pin_st7789_dc, rotation=0)
 counter=0
@@ -79,8 +76,8 @@ def on_rx():
         numeros[f"z{counter}"]=cmath.rect(float(partes[0]), float(partes[1]))
         show_nums()
 
-    elif "(" in complejo:
-        partes=complejo.split("(")
+    elif "=" in complejo:
+        partes=complejo.split("=")
         zt = eval(partes[1],numeros)
         numeros["zt"]=zt
         show_nums()
